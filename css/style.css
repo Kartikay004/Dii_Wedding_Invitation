@@ -541,10 +541,10 @@ body.invitation-revealed .main-invitation-container {
 .corner-bottom-left { bottom: 8px; left: 8px; transform: rotate(-90deg); }
 .corner-bottom-right { bottom: 8px; right: 8px; transform: rotate(180deg); }
 
-/* Card Split Layout (Left: Details, Right: Full Couple Portrait) */
+/* Card Split Layout (Left: Full Couple Portrait, Right: Wedding Details) */
 .card-split-layout {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 0.88fr 1.12fr;
     gap: 36px;
     align-items: stretch;
     position: relative;
@@ -552,17 +552,18 @@ body.invitation-revealed .main-invitation-container {
     text-align: center;
 }
 
-.card-left-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.card-right-column {
+.card-left-column.couple-image-col {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
+}
+
+.card-right-column.wedding-data-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .couple-photo-frame {
@@ -838,8 +839,8 @@ body.invitation-revealed .main-invitation-container {
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
 }
 
 .event-card {

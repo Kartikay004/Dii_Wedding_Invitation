@@ -133,12 +133,25 @@
                 <circle cx="25" cy="25" r="7" fill="#F5D989"/>
             </svg>
 
-            <!-- Card Split Layout -->
+            <!-- Card Split Layout (Left: Full Couple Portrait, Right: Wedding Details) -->
             <div class="card-split-layout">
-                <!-- LEFT COLUMN: Wedding Details -->
-                <div class="card-left-column">
-                    <div id="invitationBanner" class="invitation-badge">WEDDING INVITATION</div>
-                    
+                <!-- LEFT COLUMN: Full Couple Portrait Image -->
+                <div class="card-left-column couple-image-col">
+                    <div class="couple-photo-frame">
+                        <img id="couplePortraitImg" 
+                             src="assets/images/bride_groom_img.jpg" 
+                             onerror="this.src='assets/images/bride_groom_img.webp'" 
+                             alt="Nainsi & Aman - Bride and Groom" 
+                             class="couple-portrait-img">
+                        <div class="couple-photo-caption-bar">
+                            <span class="caption-names">NAINSI &amp; AMAN</span>
+                            <span class="caption-date">24.11.2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Wedding Details -->
+                <div class="card-right-column wedding-data-col">
                     <p id="invitationOpening" class="invitation-invites-text">
                         With immense joy and the blessings of our family, we invite you to celebrate the wedding of
                     </p>
@@ -199,7 +212,7 @@
                             <!-- Direct Venue Map Button -->
                             <a id="venueDirectMapLink" class="venue-inline-map-btn" href="https://www.google.com/maps/place/Care+%26+Fair/@27.284233,80.8283077,17z/data=!3m1!5s0x39993522c83c6a67:0xcc0960d0f6d86b84!4m20!1m13!4m12!1m3!2m2!1d80.8306743!2d27.2842757!1m6!1m2!1s0x399935beffe52cb1:0xec45006f1ca7ba58!2sCare+%26+Fair,+1+FLOOR,+NEW+MARKET,+near+NAGAR+PANCHAYAT,+Sidhauli,+Kashipur,+Uttar+Pradesh+261303!2m2!1d80.830822!2d27.2841154!3e2!3m5!1s0x399935beffe52cb1:0xec45006f1ca7ba58!8m2!3d27.2841154!4d80.830822!16s%2Fg%2F11sjhfj2lc?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
                                 <span aria-hidden="true">📍</span>
-                                <span>Open Venue on Google Maps ↗</span>
+                                <span>Open Venue in Google Maps ↗</span>
                             </a>
                         </div>
                     </div>
@@ -210,21 +223,6 @@
 
                     <div id="rsvpNoteText" class="invitation-rsvp">
                         With Best Compliments from Near &amp; Dear Relatives and Friends
-                    </div>
-                </div>
-
-                <!-- RIGHT COLUMN: Full Couple Portrait Image -->
-                <div class="card-right-column">
-                    <div class="couple-photo-frame">
-                        <img id="couplePortraitImg" 
-                             src="assets/images/bride_groom_img.webp" 
-                             onerror="this.src='assets/images/bride_groom_img.jpg'" 
-                             alt="Nainsi & Aman - Bride and Groom" 
-                             class="couple-portrait-img">
-                        <div class="couple-photo-caption-bar">
-                            <span class="caption-names">NAINSI &amp; AMAN</span>
-                            <span class="caption-date">24.11.2026</span>
-                        </div>
                     </div>
                 </div>
             </div>

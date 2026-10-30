@@ -207,10 +207,15 @@
                 `;
             }
             if (ev.venue) {
+                const mapsUrl = window.weddingDetails && window.weddingDetails.mapsUrl;
+                const isWeddingVenue = ev.venue.includes("KHATU SHYAM") || (ev.name && ev.name.includes("Wedding"));
+                const venueLinkHtml = (isWeddingVenue && mapsUrl)
+                    ? `<br><a href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer" style="color: #780D22; text-decoration: underline; font-weight: 600; font-size: 0.9rem; display: inline-block; margin-top: 4px;">📍 Open in Google Maps ↗</a>`
+                    : "";
                 detailsHtml += `
                     <li class="event-detail-row">
                         <span class="row-icon" aria-hidden="true">📍</span>
-                        <span><strong>Venue:</strong> ${escapeHtml(ev.venue)}</span>
+                        <span><strong>Venue:</strong> ${escapeHtml(ev.venue)}${venueLinkHtml}</span>
                     </li>
                 `;
             }
