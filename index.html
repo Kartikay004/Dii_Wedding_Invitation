@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>॥ श्री गणेशाय नमः ॥ Royal Indian Wedding Invitation | Radhika & Aditya</title>
+    
+    <!-- SEO & Social Sharing Meta Tags -->
+    <meta name="description" content="॥ श्री गणेशाय नमः ॥ You are cordially invited to celebrate the royal Hindu wedding ceremony of Radhika & Aditya. Experience the grand 3D royal palace entrance and wedding invitation.">
+    <meta name="keywords" content="Royal Indian Wedding, Hindu Wedding Invitation, 3D Wedding Invitation, Royal Palace, Radhika Aditya Wedding">
+    <meta name="theme-color" content="#4A0715">
+
+    <!-- Open Graph (WhatsApp, Facebook, Twitter, iMessage) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="॥ श्री गणेशाय नमः ॥ Royal Wedding Invitation | Radhika & Aditya">
+    <meta property="og:description" content="With immense joy, we invite you to celebrate the wedding ceremony of Radhika & Aditya. Tap to open the interactive 3D Royal Wedding Invitation.">
+    <meta property="og:image" content="assets/images/ganesha.webp">
+
+    <!-- Google Fonts Preconnect & Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Poppins:wght@400;500;600;700&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="gate-closed">
+
+    <!-- Ambient Visuals & Golden Particles Canvas -->
+    <div class="ambient-background" aria-hidden="true"></div>
+    <div class="ambient-lights" aria-hidden="true"></div>
+    <canvas id="particlesCanvas" aria-hidden="true"></canvas>
+
+    <!-- ====================================================================
+         SCENE ONE & TWO: THE CLOSED ROYAL 3D GATE & OPENING EXPERIENCE
+         ==================================================================== -->
+    <div id="gateExperience" class="gate-experience" role="dialog" aria-modal="true" aria-label="Royal Palace Gate Entrance">
+        <!-- Architectural Royal Archway Border -->
+        <div class="gate-arch-frame" aria-hidden="true"></div>
+
+        <!-- 3D Gates Stage -->
+        <div class="gate-stage">
+            <!-- Left Door Wing (Rotates outward around left hinge) -->
+            <div class="gate-door gate-door-left">
+                <div class="door-hinge door-hinge-top" aria-hidden="true"></div>
+                <div class="door-hinge door-hinge-bottom" aria-hidden="true"></div>
+                <div class="door-surface" aria-hidden="true"></div>
+                <div class="door-bevel-overlay" aria-hidden="true"></div>
+            </div>
+
+            <!-- Right Door Wing (Rotates outward around right hinge) -->
+            <div class="gate-door gate-door-right">
+                <div class="door-hinge door-hinge-top" aria-hidden="true"></div>
+                <div class="door-hinge door-hinge-bottom" aria-hidden="true"></div>
+                <div class="door-surface" aria-hidden="true"></div>
+                <div class="door-bevel-overlay" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <!-- Divine Portal Glow Flares open when doors swing open -->
+        <div class="gate-portal-glow" aria-hidden="true"></div>
+
+        <!-- Introductory Card on the Closed Gate -->
+        <div class="gate-intro-card">
+            <!-- Center Ganesha & Rotating Chakra Emblem -->
+            <div class="intro-divine-wrapper">
+                <div class="intro-chakra" aria-hidden="true"></div>
+                <img src="assets/images/ganesha.webp" 
+                     onerror="this.src='assets/images/ganesha.png'" 
+                     alt="Lord Ganesha" 
+                     class="intro-ganesha" 
+                     width="105" 
+                     height="105">
+            </div>
+
+            <h2 id="gateSacredHeading" class="gate-shree-ganesh">॥ श्री गणेशाय नमः ॥</h2>
+            <div id="gateSacredSubtitle" class="gate-blessing-text">With the Blessings of Lord Ganesha</div>
+            <p id="gateCelebrationTagline" class="gate-tagline">A Celebration of Love, Family &amp; Togetherness</p>
+
+            <button id="btnOpenGate" class="btn-open-gate" type="button" aria-label="Open Wedding Invitation">
+                <span aria-hidden="true">✨</span>
+                <span>OPEN WEDDING INVITATION</span>
+                <span aria-hidden="true">✨</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         REVEALED CONTENT: WEDDING INVITATION SANCTUARY
+         ==================================================================== -->
+    <main id="mainInvitationContainer" class="main-invitation-container">
+
+        <!-- ----------------------------------------------------------------
+             SCENE THREE: LORD GANESHA SACRED SANCTUARY & CHAKRA REVEAL
+             ---------------------------------------------------------------- -->
+        <section class="ganesha-sanctuary" aria-label="Divine Invocation">
+            <div class="sanctuary-chakra-wrapper">
+                <div class="sanctuary-rotating-chakra" aria-hidden="true"></div>
+                <img src="assets/images/ganesha.webp" 
+                     onerror="this.src='assets/images/ganesha.png'" 
+                     alt="Lord Ganesha blessing" 
+                     class="sanctuary-ganesha-img" 
+                     width="145" 
+                     height="145">
+            </div>
+            <h1 id="sanctuaryShree" class="sanctuary-shree">॥ श्री गणेशाय नमः ॥</h1>
+            <div id="sanctuaryBlessing" class="sanctuary-blessing">With the Blessings of Lord Ganesha</div>
+        </section>
+
+        <!-- ----------------------------------------------------------------
+             SCENE FOUR: MAIN WEDDING INVITATION CARD
+             ---------------------------------------------------------------- -->
+        <article class="wedding-card" aria-label="Wedding Invitation Details">
+            <!-- Ornate Double Gold Framing -->
+            <div class="card-ornate-frame" aria-hidden="true"></div>
+
+            <!-- Corner Ornamental Motifs -->
+            <svg class="corner-ornament corner-top-left" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M0,0 L100,0 C80,20 60,30 40,40 C30,60 20,80 0,100 Z" fill="currentColor"/>
+                <circle cx="25" cy="25" r="7" fill="#F5D989"/>
+            </svg>
+            <svg class="corner-ornament corner-top-right" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M0,0 L100,0 C80,20 60,30 40,40 C30,60 20,80 0,100 Z" fill="currentColor"/>
+                <circle cx="25" cy="25" r="7" fill="#F5D989"/>
+            </svg>
+            <svg class="corner-ornament corner-bottom-left" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M0,0 L100,0 C80,20 60,30 40,40 C30,60 20,80 0,100 Z" fill="currentColor"/>
+                <circle cx="25" cy="25" r="7" fill="#F5D989"/>
+            </svg>
+            <svg class="corner-ornament corner-bottom-right" viewBox="0 0 100 100" aria-hidden="true">
+                <path d="M0,0 L100,0 C80,20 60,30 40,40 C30,60 20,80 0,100 Z" fill="currentColor"/>
+                <circle cx="25" cy="25" r="7" fill="#F5D989"/>
+            </svg>
+
+            <!-- Card Inner Content -->
+            <div class="card-content">
+                <div id="invitationBanner" class="invitation-badge">WEDDING INVITATION</div>
+                
+                <p id="invitationOpening" class="invitation-invites-text">
+                    With immense joy and the blessings of our family, we invite you to celebrate the wedding of
+                </p>
+
+                <!-- Couple Presentation -->
+                <div class="couple-wrapper">
+                    <!-- Bride Box -->
+                    <div class="person-box">
+                        <div id="brideNameText" class="person-name">Radhika</div>
+                        <div id="brideParentsText" class="person-parents">Daughter of Shri Rajeshwar Sharma and Smt. Sunita Sharma</div>
+                    </div>
+
+                    <!-- Ornate Center Divider -->
+                    <div class="couple-divider">
+                        <span class="divider-line" aria-hidden="true"></span>
+                        <span class="divider-with-text">WITH</span>
+                        <span class="divider-line" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- Groom Box -->
+                    <div class="person-box">
+                        <div id="groomNameText" class="person-name">Aditya</div>
+                        <div id="groomParentsText" class="person-parents">Son of Shri Mahendra Verma and Smt. Pushpa Verma</div>
+                    </div>
+                </div>
+
+                <!-- Antique Gold Filigree Flourish Divider -->
+                <img src="assets/images/floral-border.webp" 
+                     onerror="this.src='assets/images/floral-border.png'" 
+                     alt="Ornamental Divider" 
+                     class="floral-divider-img" 
+                     aria-hidden="true">
+
+                <!-- Key Ceremony Details Grid -->
+                <div class="ceremony-details-grid">
+                    <!-- Date & Muhurat -->
+                    <div class="ceremony-detail-item">
+                        <div class="ceremony-icon" aria-hidden="true">📅</div>
+                        <div class="ceremony-label">Wedding Date</div>
+                        <div id="displayWeddingDate" class="ceremony-value-primary">Saturday, 28th November 2026</div>
+                        <div id="displayMuhuratTime" class="ceremony-value-secondary">Shubh Vivah Muhurat: 09:15 PM</div>
+                    </div>
+
+                    <!-- Time & Reception -->
+                    <div class="ceremony-detail-item">
+                        <div class="ceremony-icon" aria-hidden="true">⏰</div>
+                        <div class="ceremony-label">Ceremony Time</div>
+                        <div id="displayWeddingTime" class="ceremony-value-primary">07:00 PM onwards</div>
+                        <div class="ceremony-value-secondary">Baraat Swagat: 06:30 PM</div>
+                    </div>
+
+                    <!-- Venue & Location -->
+                    <div class="ceremony-detail-item">
+                        <div class="ceremony-icon" aria-hidden="true">📍</div>
+                        <div class="ceremony-label">Auspicious Venue</div>
+                        <div id="displayVenueName" class="ceremony-value-primary">The Grand Heritage Palace</div>
+                        <div id="displayVenueAddress" class="ceremony-value-secondary">Palace Road, Jaipur, Rajasthan</div>
+                    </div>
+                </div>
+
+                <p id="closingNoteText" class="invitation-closing-note">
+                    Your gracious presence and heartfelt blessings will make our celebration even more special.
+                </p>
+
+                <div id="rsvpNoteText" class="invitation-rsvp">
+                    With Best Compliments from Near &amp; Dear Relatives and Friends
+                </div>
+            </div>
+        </article>
+
+        <!-- ----------------------------------------------------------------
+             SCENE FIVE: CEREMONIES & EVENTS SCHEDULE
+             ---------------------------------------------------------------- -->
+        <section id="eventsSection" class="events-section" aria-label="Ceremony Schedule">
+            <div class="section-header">
+                <div class="section-hindi-title">॥ मांगलिक कार्यक्रम ॥</div>
+                <h2 class="section-main-title">Wedding Ceremonies</h2>
+            </div>
+
+            <!-- Dynamic Event Cards Grid -->
+            <div id="eventsGrid" class="events-grid">
+                <!-- Injected via JavaScript from weddingDetails.events -->
+            </div>
+        </section>
+
+        <!-- ----------------------------------------------------------------
+             SCENE EIGHT & NINE: INTERACTIVE ACTIONS (CALENDAR, MAPS, SHARE)
+             ---------------------------------------------------------------- -->
+        <section class="action-panels-section" aria-label="Interactive Options">
+            <!-- Add to Calendar (.ics download) -->
+            <button id="btnAddToCalendar" class="action-btn btn-calendar" type="button">
+                <span aria-hidden="true">📅</span>
+                <span>Add to Calendar</span>
+            </button>
+
+            <!-- Google Maps Venue Link -->
+            <a id="btnOpenVenueMap" class="action-btn btn-venue-map" href="#" target="_blank" rel="noopener noreferrer">
+                <span aria-hidden="true">📍</span>
+                <span>Open Venue in Google Maps</span>
+            </a>
+
+            <!-- Social Sharing & WhatsApp -->
+            <button id="btnShareInvitation" class="action-btn btn-whatsapp-share" type="button">
+                <span aria-hidden="true">✨</span>
+                <span>Share Invitation</span>
+            </button>
+
+            <button id="btnShareWhatsapp" class="action-btn btn-whatsapp-share" type="button" style="background: #25D366;">
+                <span aria-hidden="true">💬</span>
+                <span>Share via WhatsApp</span>
+            </button>
+
+            <!-- Optional Printable Invitation -->
+            <button id="btnPrintInvitation" class="action-btn btn-print-invitation" type="button">
+                <span aria-hidden="true">🖨️</span>
+                <span>Print Invitation</span>
+            </button>
+        </section>
+
+        <!-- Footer Note -->
+        <footer class="invitation-footer">
+            <div class="footer-sacred">॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ॥</div>
+            <p>Designed with love for our beloved sister's wedding celebration</p>
+        </footer>
+    </main>
+
+    <!-- ====================================================================
+         SCENE SIX: FLOATING MUSIC PLAYER CONTROLLER
+         ==================================================================== -->
+    <div id="musicController" class="music-controller" role="region" aria-label="Wedding Music Player">
+        <button id="btnToggleMusic" class="music-toggle-btn" type="button" aria-label="Play or pause wedding music">
+            <span aria-hidden="true">🎵</span>
+        </button>
+        <span id="musicStatusText" class="music-status-text">Play Music</span>
+        <div class="equalizer-bars" aria-hidden="true">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+        </div>
+        <!-- Local audio track with fallback -->
+        <audio id="weddingAudio" loop preload="none">
+            <source src="assets/audio/wedding-music.mp3" type="audio/mpeg">
+            <source src="assets/audio/wedding-music.wav" type="audio/wav">
+        </audio>
+    </div>
+
+    <!-- Toast Notification for Copy Link / Calendar Feedback -->
+    <div id="toastNotice" class="toast-notice" role="status" aria-live="polite"></div>
+
+    <!-- Configuration & Interaction Scripts -->
+    <script src="js/wedding-data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

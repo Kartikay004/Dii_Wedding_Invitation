@@ -1,0 +1,1221 @@
+/* ==========================================================================
+   PREMIUM 3D INDIAN ROYAL WEDDING INVITATION
+   Palette:
+   - Deep Maroon: #4A0715
+   - Royal Red: #780D22
+   - Antique Gold: #C9A24A
+   - Bright Gold: #F5D989
+   - Warm Ivory: #FFF5E5
+   - Dark Brown / Teak: #30150E
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Reset & Variables
+   -------------------------------------------------------------------------- */
+:root {
+    --color-maroon-dark: #32040D;
+    --color-maroon: #4A0715;
+    --color-royal-red: #780D22;
+    --color-gold-antique: #C9A24A;
+    --color-gold-bright: #F5D989;
+    --color-gold-deep: #9E782F;
+    --color-gold-glow: rgba(245, 217, 137, 0.45);
+    --color-ivory: #FFF5E5;
+    --color-ivory-light: #FFFAF0;
+    --color-dark-brown: #240E0A;
+    --color-text-dark: #30150E;
+    --color-text-muted: #6B4235;
+
+    --font-heading: 'Cinzel Decorative', 'Cinzel', serif;
+    --font-hindi: 'Rozha One', 'Yatra One', 'Tiro Devanagari Hindi', serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    --shadow-gold: 0 0 25px rgba(201, 162, 74, 0.45);
+    --shadow-gate: 0 25px 60px rgba(0, 0, 0, 0.7);
+    --radius-card: 16px;
+    --radius-btn: 30px;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--color-maroon-dark);
+    color: var(--color-text-dark);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Prevent body scrolling while gate is closed */
+body.gate-closed {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   2. Background Pattern & Ambient Lighting
+   -------------------------------------------------------------------------- */
+.ambient-background {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: 
+        radial-gradient(circle at 50% 20%, rgba(120, 13, 34, 0.9) 0%, rgba(50, 4, 13, 0.98) 70%, #1A0206 100%),
+        repeating-linear-gradient(45deg, rgba(201, 162, 74, 0.03) 0, rgba(201, 162, 74, 0.03) 1px, transparent 0, transparent 24px);
+    pointer-events: none;
+}
+
+.ambient-lights {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(circle at 50% 30%, rgba(245, 217, 137, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Canvas for golden particles & falling petals */
+#particlesCanvas {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. SCENE ONE & TWO: THE ROYAL 3D GATE
+   -------------------------------------------------------------------------- */
+.gate-experience {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1400px;
+    perspective-origin: center center;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+    overflow: hidden;
+}
+
+.gate-experience.dismissed {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Architectural Royal Arch Border around the gate */
+.gate-arch-frame {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 95;
+    border: 14px solid transparent;
+    border-image: linear-gradient(to bottom, var(--color-gold-bright), var(--color-gold-antique), var(--color-gold-deep)) 1;
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.85);
+}
+
+.gate-arch-frame::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 2px dashed rgba(245, 217, 137, 0.4);
+}
+
+/* Gate Doors 3D Container */
+.gate-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+}
+
+.gate-door {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    transition: transform 2.8s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 2.8s ease;
+    background-color: var(--color-maroon);
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.gate-door-left {
+    left: 0;
+    transform-origin: left center;
+    border-right: 2px solid var(--color-gold-antique);
+}
+
+.gate-door-right {
+    right: 0;
+    transform-origin: right center;
+    border-left: 2px solid var(--color-gold-antique);
+}
+
+/* Door Inner Texture & Carvings */
+.door-surface {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.96) contrast(1.08);
+}
+
+.gate-door-left .door-surface {
+    background-image: url('../assets/images/gate-left.webp');
+    background-image: -webkit-image-set(url('../assets/images/gate-left.webp') 1x, url('../assets/images/gate-left.png') 1x);
+}
+
+.gate-door-right .door-surface {
+    background-image: url('../assets/images/gate-right.webp');
+    background-image: -webkit-image-set(url('../assets/images/gate-right.webp') 1x, url('../assets/images/gate-right.png') 1x);
+}
+
+/* Fallback Decorative Styling for Door Panels */
+.door-bevel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+}
+
+.gate-door-left .door-bevel-overlay {
+    box-shadow: inset -6px 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.gate-door-right .door-bevel-overlay {
+    box-shadow: inset 6px 0 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Door Hinge Accents */
+.door-hinge {
+    position: absolute;
+    width: 14px;
+    height: 60px;
+    background: linear-gradient(to bottom, #E8C164, #9E782F, #4A330B);
+    border: 1px solid #FFE494;
+    border-radius: 4px;
+    z-index: 10;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.gate-door-left .door-hinge-top { top: 12%; left: 6px; }
+.gate-door-left .door-hinge-bottom { bottom: 12%; left: 6px; }
+.gate-door-right .door-hinge-top { top: 12%; right: 6px; }
+.gate-door-right .door-hinge-bottom { bottom: 12%; right: 6px; }
+
+/* 3D Gate Open State Animations */
+.gate-experience.opening .gate-door-left {
+    transform: rotateY(-115deg);
+    box-shadow: 15px 0 50px rgba(0, 0, 0, 0.9);
+}
+
+.gate-experience.opening .gate-door-right {
+    transform: rotateY(115deg);
+    box-shadow: -15px 0 50px rgba(0, 0, 0, 0.9);
+}
+
+/* Central Divine Glow that flares out as doors swing open */
+.gate-portal-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 75;
+    background: radial-gradient(circle at 50% 50%, rgba(245, 217, 137, 0.85) 0%, rgba(201, 162, 74, 0.5) 30%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gate-experience.opening .gate-portal-glow {
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. INTRODUCTORY OVERLAY ON CLOSED GATE
+   -------------------------------------------------------------------------- */
+.gate-intro-card {
+    position: relative;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 580px;
+    width: 90%;
+    padding: 36px 28px;
+    background: radial-gradient(circle at center, rgba(74, 7, 21, 0.94) 0%, rgba(48, 4, 13, 0.97) 100%);
+    border: 2px solid var(--color-gold-bright);
+    border-radius: var(--radius-card);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.85), var(--shadow-gold), inset 0 0 35px rgba(201, 162, 74, 0.2);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gate-experience.opening .gate-intro-card {
+    opacity: 0;
+    transform: scale(0.92);
+    pointer-events: none;
+}
+
+/* Central Ganesha & Rotating Chakra Emblem on Gate */
+.intro-divine-wrapper {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-chakra {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    background-image: url('../assets/images/chakra.webp');
+    background-image: -webkit-image-set(url('../assets/images/chakra.webp') 1x, url('../assets/images/chakra.png') 1x);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: rotateChakra 30s linear infinite;
+    filter: drop-shadow(0 0 16px rgba(245, 217, 137, 0.6));
+}
+
+@keyframes rotateChakra {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.intro-ganesha {
+    position: relative;
+    z-index: 2;
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-gold-bright);
+    box-shadow: 0 0 25px rgba(245, 217, 137, 0.7);
+}
+
+.gate-shree-ganesh {
+    font-family: var(--font-hindi);
+    font-size: 1.8rem;
+    color: var(--color-gold-bright);
+    text-shadow: 0 0 12px rgba(245, 217, 137, 0.65);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.gate-blessing-text {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--color-ivory);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.gate-tagline {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--color-gold-antique);
+    font-style: italic;
+    margin-bottom: 28px;
+}
+
+/* Pulsing Open Button */
+.btn-open-gate {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #A87D2E 0%, #E8C164 45%, #F5D989 55%, #A87D2E 100%);
+    color: var(--color-maroon-dark);
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 16px 36px;
+    border: 2px solid #FFF5E5;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    box-shadow: 0 6px 25px rgba(201, 162, 74, 0.6), 0 0 30px rgba(245, 217, 137, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    animation: gentlePulse 2.4s ease-in-out infinite;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 6px 25px rgba(201, 162, 74, 0.5), 0 0 15px rgba(245, 217, 137, 0.3);
+    }
+    50% {
+        transform: scale(1.035);
+        box-shadow: 0 10px 32px rgba(201, 162, 74, 0.8), 0 0 35px rgba(245, 217, 137, 0.7);
+    }
+}
+
+.btn-open-gate:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 12px 35px rgba(201, 162, 74, 0.85), 0 0 40px rgba(245, 217, 137, 0.8);
+    filter: brightness(1.08);
+}
+
+.btn-open-gate:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.btn-open-gate:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+    animation: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. MAIN CONTENT WRAPPER (REVEALED INVITATION)
+   -------------------------------------------------------------------------- */
+.main-invitation-container {
+    position: relative;
+    z-index: 20;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 50px 20px 100px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+body.invitation-revealed .main-invitation-container {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   6. SCENE THREE: LORD GANESHA SANCTUARY & CHAKRA REVEAL
+   -------------------------------------------------------------------------- */
+.ganesha-sanctuary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.ganesha-sanctuary::after {
+    content: '';
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(245, 217, 137, 0.28) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sanctuary-chakra-wrapper {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    z-index: 2;
+}
+
+.sanctuary-rotating-chakra {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    background-image: url('../assets/images/chakra.webp');
+    background-image: -webkit-image-set(url('../assets/images/chakra.webp') 1x, url('../assets/images/chakra.png') 1x);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: rotateChakra 40s linear infinite;
+    filter: drop-shadow(0 0 25px rgba(245, 217, 137, 0.75));
+    pointer-events: none;
+}
+
+.sanctuary-ganesha-img {
+    position: relative;
+    z-index: 3;
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-gold-bright);
+    box-shadow: 0 0 35px rgba(245, 217, 137, 0.8), 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.sanctuary-shree {
+    font-family: var(--font-hindi);
+    font-size: 2.3rem;
+    color: var(--color-gold-bright);
+    text-shadow: 0 0 15px rgba(245, 217, 137, 0.7);
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+}
+
+.sanctuary-blessing {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--color-ivory);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   7. SCENE FOUR: MAIN WEDDING INVITATION CARD
+   -------------------------------------------------------------------------- */
+.wedding-card {
+    background: radial-gradient(circle at 50% 20%, #FFFDF7 0%, var(--color-ivory) 80%, #F5E8D0 100%);
+    border-radius: var(--radius-card);
+    padding: 60px 48px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(201, 162, 74, 0.3);
+    border: 1px solid var(--color-gold-antique);
+    margin-bottom: 50px;
+}
+
+/* Ornate Double Gold Borders */
+.card-ornate-frame {
+    position: absolute;
+    inset: 16px;
+    border: 2px solid var(--color-gold-antique);
+    border-radius: calc(var(--radius-card) - 6px);
+    pointer-events: none;
+}
+
+.card-ornate-frame::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgba(158, 120, 47, 0.6);
+    border-radius: calc(var(--radius-card) - 10px);
+}
+
+/* Decorative Gold Corner Motifs */
+.corner-ornament {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    z-index: 5;
+    fill: var(--color-gold-antique);
+}
+
+.corner-top-left { top: 8px; left: 8px; }
+.corner-top-right { top: 8px; right: 8px; transform: rotate(90deg); }
+.corner-bottom-left { bottom: 8px; left: 8px; transform: rotate(-90deg); }
+.corner-bottom-right { bottom: 8px; right: 8px; transform: rotate(180deg); }
+
+/* Card Inner Content */
+.card-content {
+    position: relative;
+    z-index: 6;
+    text-align: center;
+}
+
+.invitation-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--color-royal-red);
+    text-transform: uppercase;
+    padding: 6px 24px;
+    border-top: 1px solid var(--color-gold-antique);
+    border-bottom: 1px solid var(--color-gold-antique);
+    margin-bottom: 24px;
+}
+
+.invitation-invites-text {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto 36px;
+    line-height: 1.8;
+}
+
+/* Couple Presentation Section */
+.couple-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.person-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.person-name {
+    font-family: var(--font-script);
+    font-size: 4rem;
+    line-height: 1.1;
+    color: var(--color-royal-red);
+    text-shadow: 1px 1px 2px rgba(120, 13, 34, 0.15);
+    margin-bottom: 4px;
+}
+
+.person-parents {
+    font-size: 1.15rem;
+    color: var(--color-text-dark);
+    font-weight: 500;
+    max-width: 520px;
+}
+
+/* Decorative Divider with Flourish */
+.couple-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 420px;
+    margin: 10px 0;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-gold-antique), transparent);
+}
+
+.divider-with-text {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-gold-deep);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Floral Flourish Image Divider */
+.floral-divider-img {
+    max-width: 240px;
+    width: 60%;
+    height: auto;
+    margin: 20px auto 35px;
+    display: block;
+    filter: drop-shadow(0 2px 5px rgba(201, 162, 74, 0.3));
+}
+
+/* Key Ceremony Details (Date, Time, Venue) */
+.ceremony-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin: 36px 0;
+    text-align: center;
+}
+
+.ceremony-detail-item {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(201, 162, 74, 0.5);
+    border-radius: 12px;
+    padding: 24px 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ceremony-detail-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(120, 13, 34, 0.1);
+}
+
+.ceremony-icon {
+    font-size: 2rem;
+    color: var(--color-gold-antique);
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.ceremony-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-gold-deep);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.ceremony-value-primary {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-royal-red);
+    margin-bottom: 4px;
+}
+
+.ceremony-value-secondary {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+}
+
+.invitation-closing-note {
+    font-size: 1.25rem;
+    color: var(--color-text-dark);
+    font-style: italic;
+    margin: 40px auto 20px;
+    max-width: 650px;
+    line-height: 1.7;
+}
+
+.invitation-rsvp {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    color: var(--color-gold-deep);
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   8. SCENE FIVE: WEDDING CEREMONIES & EVENTS SCHEDULE
+   -------------------------------------------------------------------------- */
+.events-section {
+    margin-bottom: 60px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.section-hindi-title {
+    font-family: var(--font-hindi);
+    font-size: 1.6rem;
+    color: var(--color-gold-bright);
+    margin-bottom: 4px;
+}
+
+.section-main-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-ivory);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(245, 217, 137, 0.3);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 28px;
+}
+
+.event-card {
+    background: radial-gradient(circle at 50% 10%, #FFFDF8 0%, var(--color-ivory) 100%);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-gold-antique);
+    padding: 32px 26px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(201, 162, 74, 0.3);
+}
+
+.event-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201, 162, 74, 0.35);
+}
+
+.event-card-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-maroon), var(--color-royal-red));
+    border: 2px solid var(--color-gold-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.event-card-titles {
+    flex: 1;
+}
+
+.event-hindi-name {
+    font-family: var(--font-hindi);
+    font-size: 1.15rem;
+    color: var(--color-gold-deep);
+    margin-bottom: 2px;
+}
+
+.event-english-name {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--color-royal-red);
+    font-weight: 700;
+}
+
+.event-details-list {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.event-detail-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+    color: var(--color-text-dark);
+}
+
+.event-detail-row .row-icon {
+    font-size: 1.1rem;
+    color: var(--color-gold-deep);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.event-dress-code {
+    background: rgba(201, 162, 74, 0.15);
+    border-left: 3px solid var(--color-gold-antique);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   9. SCENE EIGHT: ACTION BUTTONS (CALENDAR, VENUE MAPS, SHARE)
+   -------------------------------------------------------------------------- */
+.action-panels-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 50px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: var(--radius-btn);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    border: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Specific Button Themes */
+.btn-calendar {
+    background: linear-gradient(135deg, #A87D2E, #E8C164);
+    color: var(--color-maroon-dark);
+    box-shadow: 0 4px 18px rgba(201, 162, 74, 0.45);
+}
+
+.btn-calendar:hover {
+    box-shadow: 0 8px 25px rgba(201, 162, 74, 0.7);
+}
+
+.btn-venue-map {
+    background: linear-gradient(135deg, #780D22, #4A0715);
+    color: var(--color-ivory);
+    border: 1px solid var(--color-gold-antique);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.btn-venue-map:hover {
+    box-shadow: 0 8px 25px rgba(120, 13, 34, 0.6);
+    background: linear-gradient(135deg, #8E112B, #5E091B);
+}
+
+.btn-whatsapp-share {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #FFFFFF;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp-share:hover {
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+}
+
+.btn-print-invitation {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-ivory);
+    border: 1px solid rgba(245, 217, 137, 0.5);
+    backdrop-filter: blur(8px);
+}
+
+.btn-print-invitation:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--color-gold-bright);
+}
+
+/* --------------------------------------------------------------------------
+   10. SCENE SIX: FLOATING MUSIC PLAYER CONTROLS
+   -------------------------------------------------------------------------- */
+.music-controller {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(74, 7, 21, 0.88);
+    border: 1px solid var(--color-gold-bright);
+    padding: 8px 14px 8px 10px;
+    border-radius: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), var(--shadow-gold);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.music-controller:hover {
+    transform: translateY(-2px);
+    background: rgba(94, 9, 27, 0.95);
+}
+
+.music-toggle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-gold-antique), var(--color-gold-bright));
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-maroon-dark);
+    font-size: 1.1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.music-toggle-btn:hover {
+    transform: scale(1.08);
+}
+
+.music-toggle-btn.playing {
+    animation: rotateMusicDisc 10s linear infinite;
+}
+
+@keyframes rotateMusicDisc {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-status-text {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-ivory);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.equalizer-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+}
+
+.eq-bar {
+    width: 3px;
+    background-color: var(--color-gold-bright);
+    border-radius: 1px;
+    height: 4px;
+    transition: height 0.2s ease;
+}
+
+.music-controller.is-playing .eq-bar:nth-child(1) { animation: soundBar 1s ease-in-out infinite 0.1s; }
+.music-controller.is-playing .eq-bar:nth-child(2) { animation: soundBar 1s ease-in-out infinite 0.3s; }
+.music-controller.is-playing .eq-bar:nth-child(3) { animation: soundBar 1s ease-in-out infinite 0.2s; }
+.music-controller.is-playing .eq-bar:nth-child(4) { animation: soundBar 1s ease-in-out infinite 0.4s; }
+
+@keyframes soundBar {
+    0%, 100% { height: 4px; }
+    50% { height: 14px; }
+}
+
+/* --------------------------------------------------------------------------
+   11. TOAST NOTIFICATION (COPY LINK & FEEDBACK)
+   -------------------------------------------------------------------------- */
+.toast-notice {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(48, 4, 13, 0.95);
+    border: 1px solid var(--color-gold-bright);
+    color: var(--color-ivory);
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), var(--shadow-gold);
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.4s ease;
+}
+
+.toast-notice.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   12. FOOTER SECTION
+   -------------------------------------------------------------------------- */
+.invitation-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(201, 162, 74, 0.25);
+    color: var(--color-gold-antique);
+    font-size: 0.95rem;
+}
+
+.footer-sacred {
+    font-family: var(--font-hindi);
+    font-size: 1.2rem;
+    color: var(--color-gold-bright);
+    margin-bottom: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   13. RESPONSIVE DESIGN (MOBILE, TABLET, DESKTOP)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    html {
+        font-size: 14.5px;
+    }
+
+    .gate-intro-card {
+        padding: 26px 18px;
+        width: 92%;
+    }
+
+    .intro-divine-wrapper {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 16px;
+    }
+
+    .intro-chakra {
+        width: 140px;
+        height: 140px;
+    }
+
+    .intro-ganesha {
+        width: 85px;
+        height: 85px;
+    }
+
+    .gate-shree-ganesh {
+        font-size: 1.5rem;
+    }
+
+    .btn-open-gate {
+        padding: 14px 28px;
+        font-size: 0.88rem;
+    }
+
+    .sanctuary-chakra-wrapper {
+        width: 190px;
+        height: 190px;
+    }
+
+    .sanctuary-rotating-chakra {
+        width: 190px;
+        height: 190px;
+    }
+
+    .sanctuary-ganesha-img {
+        width: 115px;
+        height: 115px;
+    }
+
+    .wedding-card {
+        padding: 38px 20px;
+    }
+
+    .card-ornate-frame {
+        inset: 10px;
+    }
+
+    .corner-ornament {
+        width: 32px;
+        height: 32px;
+    }
+
+    .person-name {
+        font-size: 2.9rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ceremony-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-panels-section {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+
+    .music-controller {
+        bottom: 16px;
+        right: 16px;
+        padding: 6px 10px;
+    }
+
+    .music-status-text {
+        display: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .gate-shree-ganesh {
+        font-size: 1.3rem;
+    }
+    
+    .person-name {
+        font-size: 2.5rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   14. ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .intro-chakra,
+    .sanctuary-rotating-chakra,
+    .btn-open-gate,
+    .music-toggle-btn.playing {
+        animation: none !important;
+    }
+
+    .gate-door {
+        transition: transform 0.6s ease, opacity 0.6s ease !important;
+    }
+
+    .main-invitation-container {
+        transition: opacity 0.5s ease !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   15. PRINT STYLESHEET (High Quality Printable Card)
+   -------------------------------------------------------------------------- */
+@media print {
+    body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+    }
+
+    .ambient-background,
+    .ambient-lights,
+    #particlesCanvas,
+    .gate-experience,
+    .music-controller,
+    .action-panels-section,
+    .toast-notice {
+        display: none !important;
+    }
+
+    .main-invitation-container {
+        opacity: 1 !important;
+        transform: none !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .wedding-card {
+        box-shadow: none !important;
+        border: 2px solid #C9A24A !important;
+        background: #FFFDF8 !important;
+        page-break-inside: avoid;
+        padding: 30px !important;
+    }
+
+    .person-name {
+        color: #780D22 !important;
+    }
+
+    .event-card {
+        box-shadow: none !important;
+        border: 1px solid #C9A24A !important;
+        page-break-inside: avoid;
+    }
+}

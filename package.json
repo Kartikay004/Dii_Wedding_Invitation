@@ -1,0 +1,19 @@
+{
+  "name": "royal-wedding-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Premium 3D Indian Royal Wedding Invitation Website",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "dev": "python -m http.server 8080"
+  },
+  "keywords": [
+    "wedding-invitation",
+    "3d",
+    "html5",
+    "css3",
+    "vanilla-js"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

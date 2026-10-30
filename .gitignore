@@ -1,0 +1,17 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependency & Build caches
+node_modules/
+dist/
+.cache/
+
+# Local logs
+*.log
+
+# Personal Identity Documents (Privacy Protection)
+*aadhar*
+*aadhaar*
+
