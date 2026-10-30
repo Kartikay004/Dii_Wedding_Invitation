@@ -401,7 +401,7 @@ body.gate-closed {
 .main-invitation-container {
     position: relative;
     z-index: 20;
-    max-width: 900px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 50px 20px 100px;
     opacity: 0;
@@ -541,11 +541,82 @@ body.invitation-revealed .main-invitation-container {
 .corner-bottom-left { bottom: 8px; left: 8px; transform: rotate(-90deg); }
 .corner-bottom-right { bottom: 8px; right: 8px; transform: rotate(180deg); }
 
-/* Card Inner Content */
-.card-content {
+/* Card Split Layout (Left: Details, Right: Full Couple Portrait) */
+.card-split-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 36px;
+    align-items: stretch;
     position: relative;
     z-index: 6;
     text-align: center;
+}
+
+.card-left-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.couple-photo-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 540px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 3px solid var(--color-gold-bright);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), var(--shadow-gold);
+    background: #240E0A;
+}
+
+.couple-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.couple-photo-frame:hover .couple-portrait-img {
+    transform: scale(1.025);
+}
+
+.couple-photo-caption-bar {
+    position: absolute;
+    bottom: 0;
+    inset-inline: 0;
+    background: linear-gradient(to top, rgba(74, 7, 21, 0.95) 0%, rgba(74, 7, 21, 0.72) 65%, transparent 100%);
+    padding: 28px 16px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    pointer-events: none;
+}
+
+.caption-names {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--color-gold-bright);
+    text-transform: uppercase;
+}
+
+.caption-date {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: var(--color-ivory);
 }
 
 .invitation-badge {
@@ -586,13 +657,17 @@ body.invitation-revealed .main-invitation-container {
     align-items: center;
 }
 
+/* Normal Elegant English Typography (Non-cursive) */
 .person-name {
-    font-family: var(--font-script);
-    font-size: 4rem;
-    line-height: 1.1;
+    font-family: var(--font-heading);
+    font-size: 2.15rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.25;
     color: var(--color-royal-red);
-    text-shadow: 1px 1px 2px rgba(120, 13, 34, 0.15);
-    margin-bottom: 4px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(120, 13, 34, 0.12);
+    margin-bottom: 6px;
 }
 
 .person-parents {
@@ -687,6 +762,32 @@ body.invitation-revealed .main-invitation-container {
 .ceremony-value-secondary {
     font-size: 1.05rem;
     color: var(--color-text-muted);
+}
+
+.venue-inline-map-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 18px;
+    background: linear-gradient(135deg, #780D22, #4A0715);
+    color: var(--color-ivory);
+    border: 1px solid var(--color-gold-bright);
+    border-radius: 20px;
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.venue-inline-map-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #9E112E, #5E091B);
+    box-shadow: 0 6px 18px rgba(201, 162, 74, 0.45);
+    color: #FFFFFF;
 }
 
 .invitation-closing-note {
@@ -1049,6 +1150,22 @@ body.invitation-revealed .main-invitation-container {
 /* --------------------------------------------------------------------------
    13. RESPONSIVE DESIGN (MOBILE, TABLET, DESKTOP)
    -------------------------------------------------------------------------- */
+@media (max-width: 920px) {
+    .card-split-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .couple-photo-frame {
+        min-height: 420px;
+        max-height: 540px;
+    }
+
+    .person-name {
+        font-size: 1.85rem;
+    }
+}
+
 @media (max-width: 768px) {
     html {
         font-size: 14.5px;
@@ -1113,7 +1230,12 @@ body.invitation-revealed .main-invitation-container {
     }
 
     .person-name {
-        font-size: 2.9rem;
+        font-size: 1.65rem;
+        letter-spacing: 1.5px;
+    }
+
+    .couple-photo-frame {
+        min-height: 360px;
     }
 
     .events-grid {

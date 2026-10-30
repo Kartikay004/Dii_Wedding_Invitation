@@ -115,23 +115,34 @@
         }
 
         // Ceremony Key Details
-        setSafeText("displayWeddingDate", data.weddingDateFormatted || data.weddingDate || "Saturday, 28th November 2026");
+        setSafeText("displayWeddingDate", data.weddingDateFormatted || data.weddingDate || "Tuesday, 24th November 2026");
         setSafeText("displayWeddingTime", data.weddingTime || "07:00 PM onwards");
         setSafeText("displayMuhuratTime", data.muhuratTime || "Shubh Vivah Muhurat: 09:15 PM");
-        setSafeText("displayVenueName", data.venue || "The Grand Heritage Palace");
+        setSafeText("displayVenueName", data.venue || "KHATU SHYAM MARIAGE LAWN");
         setSafeText("displayVenueAddress", data.address || "");
 
+        // Couple Portrait image update
+        const coupleImg = document.getElementById("couplePortraitImg");
+        if (coupleImg && data.brideGroomPhoto) {
+            coupleImg.src = data.brideGroomPhoto;
+            if (data.brideGroomPhotoFallback) {
+                coupleImg.onerror = function() {
+                    coupleImg.src = data.brideGroomPhotoFallback;
+                };
+            }
+        }
+
         // Closing Notes
-        setSafeText("closingNoteText", data.closingNote || "Your gracious presence will make our celebration even more special.");
-        setSafeText("rsvpNoteText", data.rsvpNote || "With Best Compliments from Relatives & Friends");
+        setSafeText("closingNoteText", data.closingNote || "Your gracious presence and heartfelt blessings will make our celebration even more special.");
+        setSafeText("rsvpNoteText", data.rsvpNote || "With Best Compliments from Near & Dear Relatives and Friends");
 
         // Render Events Section
         renderEventsList(data.events);
 
-        // Configure Venue Map Link
+        // Configure Venue Map Link (both card inline button and bottom action button)
         setupVenueMapLink(data);
 
-        // Configure Calendar Button
+        // Configure Calendar Button (if present)
         setupCalendarButton(data);
     }
 
@@ -231,8 +242,6 @@
      * Set up Google Maps navigation button
      */
     function setupVenueMapLink(data) {
-        if (!elements.btnOpenVenueMap) return;
-
         let mapHref = "";
         if (data.mapsUrl && data.mapsUrl.trim() !== "") {
             mapHref = data.mapsUrl.trim();
@@ -242,12 +251,22 @@
             mapHref = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(data.venue.trim());
         }
 
+        const directLinkEl = document.getElementById("venueDirectMapLink");
+
         if (mapHref) {
-            elements.btnOpenVenueMap.href = mapHref;
-            elements.btnOpenVenueMap.target = "_blank";
-            elements.btnOpenVenueMap.rel = "noopener noreferrer";
+            if (elements.btnOpenVenueMap) {
+                elements.btnOpenVenueMap.href = mapHref;
+                elements.btnOpenVenueMap.target = "_blank";
+                elements.btnOpenVenueMap.rel = "noopener noreferrer";
+            }
+            if (directLinkEl) {
+                directLinkEl.href = mapHref;
+                directLinkEl.target = "_blank";
+                directLinkEl.rel = "noopener noreferrer";
+            }
         } else {
-            elements.btnOpenVenueMap.style.display = "none";
+            if (elements.btnOpenVenueMap) elements.btnOpenVenueMap.style.display = "none";
+            if (directLinkEl) directLinkEl.style.display = "none";
         }
     }
 

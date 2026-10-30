@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>॥ श्री गणेशाय नमः ॥ Royal Indian Wedding Invitation | Radhika & Aditya</title>
+    <title>॥ श्री गणेशाय नमः ॥ Royal Indian Wedding Invitation | Nainsi & Aman</title>
     
     <!-- SEO & Social Sharing Meta Tags -->
-    <meta name="description" content="॥ श्री गणेशाय नमः ॥ You are cordially invited to celebrate the royal Hindu wedding ceremony of Radhika & Aditya. Experience the grand 3D royal palace entrance and wedding invitation.">
-    <meta name="keywords" content="Royal Indian Wedding, Hindu Wedding Invitation, 3D Wedding Invitation, Royal Palace, Radhika Aditya Wedding">
+    <meta name="description" content="॥ श्री गणेशाय नमः ॥ You are cordially invited to celebrate the royal Hindu wedding ceremony of Nainsi & Aman. Experience the grand 3D royal palace entrance and wedding invitation.">
+    <meta name="keywords" content="Royal Indian Wedding, Hindu Wedding Invitation, 3D Wedding Invitation, Royal Palace, Nainsi Aman Wedding, Sidhauli">
     <meta name="theme-color" content="#4A0715">
 
     <!-- Open Graph (WhatsApp, Facebook, Twitter, iMessage) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="॥ श्री गणेशाय नमः ॥ Royal Wedding Invitation | Radhika & Aditya">
-    <meta property="og:description" content="With immense joy, we invite you to celebrate the wedding ceremony of Radhika & Aditya. Tap to open the interactive 3D Royal Wedding Invitation.">
-    <meta property="og:image" content="assets/images/ganesha.webp">
+    <meta property="og:title" content="॥ श्री गणेशाय नमः ॥ Royal Wedding Invitation | Nainsi & Aman">
+    <meta property="og:description" content="With immense joy, we invite you to celebrate the wedding ceremony of Nainsi & Aman. Tap to open the interactive 3D Royal Wedding Invitation.">
+    <meta property="og:image" content="assets/images/bride_groom_img.jpg">
 
     <!-- Google Fonts Preconnect & Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,7 +108,8 @@
         </section>
 
         <!-- ----------------------------------------------------------------
-             SCENE FOUR: MAIN WEDDING INVITATION CARD
+             SCENE FOUR: MAIN WEDDING INVITATION CARD (TWO-COLUMN SPLIT)
+             Left: Wedding Information | Right: Full Couple Portrait
              ---------------------------------------------------------------- -->
         <article class="wedding-card" aria-label="Wedding Invitation Details">
             <!-- Ornate Double Gold Framing -->
@@ -132,76 +133,99 @@
                 <circle cx="25" cy="25" r="7" fill="#F5D989"/>
             </svg>
 
-            <!-- Card Inner Content -->
-            <div class="card-content">
-                <div id="invitationBanner" class="invitation-badge">WEDDING INVITATION</div>
-                
-                <p id="invitationOpening" class="invitation-invites-text">
-                    With immense joy and the blessings of our family, we invite you to celebrate the wedding of
-                </p>
+            <!-- Card Split Layout -->
+            <div class="card-split-layout">
+                <!-- LEFT COLUMN: Wedding Details -->
+                <div class="card-left-column">
+                    <div id="invitationBanner" class="invitation-badge">WEDDING INVITATION</div>
+                    
+                    <p id="invitationOpening" class="invitation-invites-text">
+                        With immense joy and the blessings of our family, we invite you to celebrate the wedding of
+                    </p>
 
-                <!-- Couple Presentation -->
-                <div class="couple-wrapper">
-                    <!-- Bride Box -->
-                    <div class="person-box">
-                        <div id="brideNameText" class="person-name">Radhika</div>
-                        <div id="brideParentsText" class="person-parents">Daughter of Shri Rajeshwar Sharma and Smt. Sunita Sharma</div>
+                    <!-- Couple Presentation in Normal Elegant English -->
+                    <div class="couple-wrapper">
+                        <!-- Bride Box -->
+                        <div class="person-box">
+                            <div id="brideNameText" class="person-name">NAINSI SRIVASTAVA</div>
+                            <div id="brideParentsText" class="person-parents">Daughter of Mr. SWADESH SRIVASTAVA</div>
+                        </div>
+
+                        <!-- Ornate Center Divider -->
+                        <div class="couple-divider">
+                            <span class="divider-line" aria-hidden="true"></span>
+                            <span class="divider-with-text">WITH</span>
+                            <span class="divider-line" aria-hidden="true"></span>
+                        </div>
+
+                        <!-- Groom Box -->
+                        <div class="person-box">
+                            <div id="groomNameText" class="person-name">AMAN SRIVASTAVA</div>
+                            <div id="groomParentsText" class="person-parents">Son of Mr. DINESH SRIVASTAVA</div>
+                        </div>
                     </div>
 
-                    <!-- Ornate Center Divider -->
-                    <div class="couple-divider">
-                        <span class="divider-line" aria-hidden="true"></span>
-                        <span class="divider-with-text">WITH</span>
-                        <span class="divider-line" aria-hidden="true"></span>
+                    <!-- Antique Gold Filigree Flourish Divider -->
+                    <img src="assets/images/floral-border.webp" 
+                         onerror="this.src='assets/images/floral-border.png'" 
+                         alt="Ornamental Divider" 
+                         class="floral-divider-img" 
+                         aria-hidden="true">
+
+                    <!-- Key Ceremony Details Grid -->
+                    <div class="ceremony-details-grid">
+                        <!-- Date & Muhurat -->
+                        <div class="ceremony-detail-item">
+                            <div class="ceremony-icon" aria-hidden="true">📅</div>
+                            <div class="ceremony-label">Wedding Date</div>
+                            <div id="displayWeddingDate" class="ceremony-value-primary">Tuesday, 24th November 2026</div>
+                            <div id="displayMuhuratTime" class="ceremony-value-secondary">Shubh Vivah Muhurat: 09:15 PM</div>
+                        </div>
+
+                        <!-- Time -->
+                        <div class="ceremony-detail-item">
+                            <div class="ceremony-icon" aria-hidden="true">⏰</div>
+                            <div class="ceremony-label">Ceremony Time</div>
+                            <div id="displayWeddingTime" class="ceremony-value-primary">07:00 PM onwards</div>
+                            <div class="ceremony-value-secondary">Baraat Swagat: 06:30 PM</div>
+                        </div>
+
+                        <!-- Venue & Location with direct Google Maps link -->
+                        <div class="ceremony-detail-item venue-detail-item">
+                            <div class="ceremony-icon" aria-hidden="true">📍</div>
+                            <div class="ceremony-label">Auspicious Venue</div>
+                            <div id="displayVenueName" class="ceremony-value-primary">KHATU SHYAM MARIAGE LAWN</div>
+                            <div id="displayVenueAddress" class="ceremony-value-secondary">Sidhauli Mishrikh Road Near Dak Bangla 261303</div>
+                            <!-- Direct Venue Map Button -->
+                            <a id="venueDirectMapLink" class="venue-inline-map-btn" href="https://www.google.com/maps/place/Care+%26+Fair/@27.284233,80.8283077,17z/data=!3m1!5s0x39993522c83c6a67:0xcc0960d0f6d86b84!4m20!1m13!4m12!1m3!2m2!1d80.8306743!2d27.2842757!1m6!1m2!1s0x399935beffe52cb1:0xec45006f1ca7ba58!2sCare+%26+Fair,+1+FLOOR,+NEW+MARKET,+near+NAGAR+PANCHAYAT,+Sidhauli,+Kashipur,+Uttar+Pradesh+261303!2m2!1d80.830822!2d27.2841154!3e2!3m5!1s0x399935beffe52cb1:0xec45006f1ca7ba58!8m2!3d27.2841154!4d80.830822!16s%2Fg%2F11sjhfj2lc?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+                                <span aria-hidden="true">📍</span>
+                                <span>Open Venue on Google Maps ↗</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <!-- Groom Box -->
-                    <div class="person-box">
-                        <div id="groomNameText" class="person-name">Aditya</div>
-                        <div id="groomParentsText" class="person-parents">Son of Shri Mahendra Verma and Smt. Pushpa Verma</div>
+                    <p id="closingNoteText" class="invitation-closing-note">
+                        Your gracious presence and heartfelt blessings will make our celebration even more special.
+                    </p>
+
+                    <div id="rsvpNoteText" class="invitation-rsvp">
+                        With Best Compliments from Near &amp; Dear Relatives and Friends
                     </div>
                 </div>
 
-                <!-- Antique Gold Filigree Flourish Divider -->
-                <img src="assets/images/floral-border.webp" 
-                     onerror="this.src='assets/images/floral-border.png'" 
-                     alt="Ornamental Divider" 
-                     class="floral-divider-img" 
-                     aria-hidden="true">
-
-                <!-- Key Ceremony Details Grid -->
-                <div class="ceremony-details-grid">
-                    <!-- Date & Muhurat -->
-                    <div class="ceremony-detail-item">
-                        <div class="ceremony-icon" aria-hidden="true">📅</div>
-                        <div class="ceremony-label">Wedding Date</div>
-                        <div id="displayWeddingDate" class="ceremony-value-primary">Saturday, 28th November 2026</div>
-                        <div id="displayMuhuratTime" class="ceremony-value-secondary">Shubh Vivah Muhurat: 09:15 PM</div>
+                <!-- RIGHT COLUMN: Full Couple Portrait Image -->
+                <div class="card-right-column">
+                    <div class="couple-photo-frame">
+                        <img id="couplePortraitImg" 
+                             src="assets/images/bride_groom_img.webp" 
+                             onerror="this.src='assets/images/bride_groom_img.jpg'" 
+                             alt="Nainsi & Aman - Bride and Groom" 
+                             class="couple-portrait-img">
+                        <div class="couple-photo-caption-bar">
+                            <span class="caption-names">NAINSI &amp; AMAN</span>
+                            <span class="caption-date">24.11.2026</span>
+                        </div>
                     </div>
-
-                    <!-- Time & Reception -->
-                    <div class="ceremony-detail-item">
-                        <div class="ceremony-icon" aria-hidden="true">⏰</div>
-                        <div class="ceremony-label">Ceremony Time</div>
-                        <div id="displayWeddingTime" class="ceremony-value-primary">07:00 PM onwards</div>
-                        <div class="ceremony-value-secondary">Baraat Swagat: 06:30 PM</div>
-                    </div>
-
-                    <!-- Venue & Location -->
-                    <div class="ceremony-detail-item">
-                        <div class="ceremony-icon" aria-hidden="true">📍</div>
-                        <div class="ceremony-label">Auspicious Venue</div>
-                        <div id="displayVenueName" class="ceremony-value-primary">The Grand Heritage Palace</div>
-                        <div id="displayVenueAddress" class="ceremony-value-secondary">Palace Road, Jaipur, Rajasthan</div>
-                    </div>
-                </div>
-
-                <p id="closingNoteText" class="invitation-closing-note">
-                    Your gracious presence and heartfelt blessings will make our celebration even more special.
-                </p>
-
-                <div id="rsvpNoteText" class="invitation-rsvp">
-                    With Best Compliments from Near &amp; Dear Relatives and Friends
                 </div>
             </div>
         </article>
@@ -222,15 +246,9 @@
         </section>
 
         <!-- ----------------------------------------------------------------
-             SCENE EIGHT & NINE: INTERACTIVE ACTIONS (CALENDAR, MAPS, SHARE)
+             SCENE EIGHT & NINE: INTERACTIVE ACTIONS (MAPS & WHATSAPP SHARING)
              ---------------------------------------------------------------- -->
         <section class="action-panels-section" aria-label="Interactive Options">
-            <!-- Add to Calendar (.ics download) -->
-            <button id="btnAddToCalendar" class="action-btn btn-calendar" type="button">
-                <span aria-hidden="true">📅</span>
-                <span>Add to Calendar</span>
-            </button>
-
             <!-- Google Maps Venue Link -->
             <a id="btnOpenVenueMap" class="action-btn btn-venue-map" href="#" target="_blank" rel="noopener noreferrer">
                 <span aria-hidden="true">📍</span>
@@ -246,12 +264,6 @@
             <button id="btnShareWhatsapp" class="action-btn btn-whatsapp-share" type="button" style="background: #25D366;">
                 <span aria-hidden="true">💬</span>
                 <span>Share via WhatsApp</span>
-            </button>
-
-            <!-- Optional Printable Invitation -->
-            <button id="btnPrintInvitation" class="action-btn btn-print-invitation" type="button">
-                <span aria-hidden="true">🖨️</span>
-                <span>Print Invitation</span>
             </button>
         </section>
 
@@ -283,7 +295,7 @@
         </audio>
     </div>
 
-    <!-- Toast Notification for Copy Link / Calendar Feedback -->
+    <!-- Toast Notification for Copy Link / Feedback -->
     <div id="toastNotice" class="toast-notice" role="status" aria-live="polite"></div>
 
     <!-- Configuration & Interaction Scripts -->
